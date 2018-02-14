@@ -1,0 +1,22 @@
+{
+  "name": "PDF Viewer",
+  "version": "1.0.3",
+  "manifest_version": 4,
+  "description": "Online PDF viewer plugin.",
+  "homepage_url": "http://www.pdf-viewer.com",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "scripts": ["src/inject/inject.js"
+	]
+  },
+  "permissions": [
+    "<all_urls>",
+    "tabs",
+    "storage",
+    "unlimitedStorage"
+  ]
+}
