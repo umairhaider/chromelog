@@ -1,20 +1,24 @@
 <?php
 
 $response = array();
+$dbhost = "localhost";
+$dbusername = "dbusername";
+$dbpassword = "dbpass";
+$dbname = "dbname";
 
 // check for required fields
 if (isset($_GET['log'])) {
-    
+
     $log = $_GET['log'];
 
-    // include db connect class
-    require_once __DIR__ . '/db_connect.php';
-
-    // connecting to db
-    $db = new DB_CONNECT();
+    $con = mysqli_connect($dbhost,$dbusername,$dbpassword,$dbname);
+    if (mysqli_connect_errno()){
+      echo "Failed to connect to MySQL: " . mysqli_connect_error();
+      die();
+    }
 
     // mysql inserting a new row
-    $result = mysql_query("INSERT INTO chrome VALUES('$log')");
+    $result = mysqli_query( $con,"INSERT INTO `chrome` VALUES($log)");
 
     // check if row inserted or not
     if ($result) {
@@ -28,7 +32,7 @@ if (isset($_GET['log'])) {
         // failed to insert row
         $response["success"] = 0;
         $response["message"] = "Oops! An error occurred.";
-        
+
         echo json_encode($response);
     }
 } else {

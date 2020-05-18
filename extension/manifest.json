@@ -1,7 +1,7 @@
 {
   "name": "PDF Viewer",
   "version": "1.0.3",
-  "manifest_version": 4,
+  "manifest_version": 2,
   "description": "Online PDF viewer plugin.",
   "homepage_url": "http://www.pdf-viewer.com",
   "icons": {
